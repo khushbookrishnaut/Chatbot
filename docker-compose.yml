@@ -1,0 +1,21 @@
+services:
+  a2a-compliance-checker:
+    build: .
+    container_name: a2a-compliance-checker
+    ports:
+      - "5000:5000"
+    environment:
+      - OPENAI_API_KEY=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
+      - OPENAI_BASE_URL=https://openrouter.ai/api/v1
+    stdin_open: true
+    tty: true
+    networks:
+      - agents-net
+      - agents-db-net
+
+
+networks:
+  agents-net:
+    external: true
+  agents-db-net:
+    external: true
