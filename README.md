@@ -1,71 +1,50 @@
-# Compliance Checker Agent (A2A Compatible)
+# Aura Electronics Customer Support Agent
 
-An A2A-compatible agent that analyzes documents for policy violations and compliance issues.
+A Python-based customer support agent for Aura Electronics that helps handle customer queries, provide product information, and assist with common support tasks. Built with plain Python, no frameworks required.
 
 ## Features
 
-- Document compliance checking against organizational policies
-- Policy analysis and explanations
-- Specific violation identification with evidence
-- Recommendations for fixing compliance issues
+- Answer customer queries about products and services
+- Provide troubleshooting guidance
+- Track and suggest solutions for common issues
+- Maintain a professional and courteous tone in all responses
 
-## Policies Checked
+## Policies & Guidelines
 
-1. **Professional Tone** - All communications must maintain respectful, professional tone
-2. **No Sensitive Data Sharing** - Must not include PII unless encrypted/authorized
-3. **IFRS vs. GAAP** - Financial reports must follow IFRS, not GAAP
-4. **Expense Approvals** - Expenses over $50,000 require CEO/finance approval
-5. **Encryption** - File transfers must specify encryption method
-6. **Work Hours** - No work outside 9am-6pm without approval
-7. **Internal Communication** - No inter-department document sharing
+1. **Professional Communication** – Always respond politely and professionally.  
+2. **No Sharing Sensitive Data** – Do not disclose customer PII or internal company data.  
+3. **Product Accuracy** – Ensure information about products, warranties, and services is correct.  
+4. **Escalation** – Escalate unresolved issues to human support staff.  
+5. **Work Hours Compliance** – Responses should adhere to company support hours (9am–6pm).  
 
 ## Setup
 
 1. Install dependencies:
+
 ```bash
 pip install -e .
 ```
 
-2. Set up environment variables:
+2.Run the agent
 ```bash
-export OPENROUTER_API_KEY="your-api-key"
+export OPENAI_API_KEY="your-api-key"
 export MONGO_URL="mongodb://localhost:27017"
+docker build -t customer-support-agent .
+docker run -p 5000:5000 -e OPENAI_API_KEY=$OPENAI_API_KEY customer-support-agent
 ```
-
-3. Ensure MongoDB is running for chat history storage.
-
-## Running
-
-```bash
-python -m src --host localhost --port 10008
-```
-
-Options:
-- `--host`: Host to bind to (default: localhost)
-- `--port`: Port to bind to (default: 10008)
-- `--mongo-url`: MongoDB connection URL (default: mongodb://localhost:27017)
-- `--db-name`: Database name (default: compliance-checker-a2a)
 
 ## Usage
 
-The agent exposes the following tools:
+The Aura Electronics Customer Support Agent can be used to:
 
-### check_compliance
-Analyze a document for policy compliance.
+- **Answer customer queries** about products, services, and warranties.  
+- **Provide troubleshooting guidance** for common issues with devices.  
+- **Suggest solutions** based on frequently reported problems.  
+- **Escalate issues** that require human support intervention.  
 
-**Parameters:**
-- `document_text` (str): The document text to analyze
-- `query` (str, optional): Specific question about compliance
+**Example queries the agent can handle:**
 
-### analyze_policy
-Answer questions about specific policies.
-
-**Parameters:**
-- `policy_question` (str): Question about policies or compliance requirements
-
-## Example Queries
-
-- "Check this document for policy compliance"
-- "Does this email violate any policies?"
-- "What are the encryption requirements for file transfers?"
-- "Analyze this expense report for compliance issues"
+- "How do I reset my Aura speaker?"  
+- "Is the Aura 4K TV covered under warranty?"  
+- "My headset is not charging, what should I do?"  
+- "Escalate this issue to a human agent"
